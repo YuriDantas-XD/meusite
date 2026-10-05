@@ -1,0 +1,3646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Censo Eleitoral - Monte Santo</title>
+
+<style>
+:root{
+    --primary:#7b1e1e;
+    --primary-dark:#541313;
+    --secondary:#b8860b;
+    --bg:#f3f5f7;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --success:#15803d;
+    --danger:#dc2626;
+    --info:#2563eb;
+    --warning:#d97706;
+    --shadow:0 4px 15px rgba(0,0,0,.08);
+    --radius:14px;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+#loginScreen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:
+        linear-gradient(rgba(84,19,19,.90),rgba(123,30,30,.92)),
+        linear-gradient(135deg,#7b1e1e,#b8860b);
+}
+
+.login-box{
+    width:100%;
+    max-width:430px;
+    background:#fff;
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 15px 50px rgba(0,0,0,.25);
+}
+
+.logo{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    margin:0 auto 15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--primary);
+    color:#fff;
+    font-size:34px;
+    font-weight:bold;
+}
+
+.login-box h1{
+    text-align:center;
+    font-size:24px;
+    color:var(--primary);
+    margin-bottom:8px;
+}
+
+.login-box p{
+    text-align:center;
+    color:var(--muted);
+    margin-bottom:25px;
+    font-size:14px;
+}
+
+.login-demo{
+    margin-top:18px;
+    background:#fff7ed;
+    border:1px solid #fed7aa;
+    padding:12px;
+    border-radius:10px;
+    font-size:12px;
+    color:#9a3412;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.form-group{
+    margin-bottom:16px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
+    font-size:14px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px;
+    font-size:15px;
+    outline:none;
+    background:#fff;
+    transition:.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(123,30,30,.08);
+}
+
+textarea{
+    min-height:90px;
+    resize:vertical;
+}
+
+button{
+    border:0;
+    border-radius:10px;
+    padding:12px 16px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+button:hover{
+    transform:translateY(-1px);
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:#fff;
+}
+
+.btn-primary:hover{
+    background:var(--primary-dark);
+}
+
+.btn-secondary{
+    background:#e5e7eb;
+    color:#111827;
+}
+
+.btn-success{
+    background:var(--success);
+    color:#fff;
+}
+
+.btn-danger{
+    background:var(--danger);
+    color:#fff;
+}
+
+.btn-info{
+    background:var(--info);
+    color:#fff;
+}
+
+.btn-warning{
+    background:var(--warning);
+    color:#fff;
+}
+
+.full{
+    width:100%;
+}
+
+/* =========================
+   APP
+========================= */
+
+#app{
+    display:none;
+}
+
+header{
+    background:var(--primary);
+    color:#fff;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
+}
+
+.header-content{
+    max-width:1200px;
+    margin:auto;
+    padding:15px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.header-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.header-logo{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    background:#fff;
+    color:var(--primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:18px;
+}
+
+.header-title h1{
+    font-size:20px;
+}
+
+.header-title small{
+    display:block;
+    opacity:.8;
+    margin-top:3px;
+}
+
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.user-badge{
+    background:rgba(255,255,255,.12);
+    padding:8px 12px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+/* =========================
+   NAV
+========================= */
+
+nav{
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:75px;
+    z-index:90;
+    overflow-x:auto;
+}
+
+.nav-inner{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    min-width:max-content;
+}
+
+.nav-btn{
+    border-radius:0;
+    background:#fff;
+    color:#555;
+    padding:15px 18px;
+    border-bottom:3px solid transparent;
+}
+
+.nav-btn.active{
+    color:var(--primary);
+    border-bottom-color:var(--primary);
+    background:#fff7f7;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+    max-width:1200px;
+    margin:auto;
+    padding:25px 20px 50px;
+}
+
+.section{
+    display:none;
+}
+
+.section.active{
+    display:block;
+}
+
+.page-title{
+    margin-bottom:20px;
+}
+
+.page-title h2{
+    color:var(--primary);
+    margin-bottom:5px;
+}
+
+.page-title p{
+    color:var(--muted);
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:#fff;
+    padding:20px;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+}
+
+.stat-card .icon{
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.stat-card .number{
+    font-size:28px;
+    font-weight:bold;
+    color:var(--primary);
+}
+
+.stat-card .label{
+    color:var(--muted);
+    font-size:13px;
+    margin-top:5px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+    background:#fff;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:22px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    color:var(--primary);
+    margin-bottom:18px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.grid-4{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+/* =========================
+   ELEITORES
+========================= */
+
+.eleitor{
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:18px;
+    margin-bottom:15px;
+    background:#fafafa;
+}
+
+.eleitor-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:15px;
+}
+
+.eleitor-header strong{
+    color:var(--primary);
+}
+
+.eleitor-actions{
+    display:flex;
+    gap:8px;
+}
+
+.eleitor-actions button{
+    padding:7px 10px;
+    font-size:12px;
+}
+
+/* =========================
+   RESULTADOS
+========================= */
+
+.result-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.result-row{
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:12px;
+}
+
+.result-top{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:7px;
+}
+
+.progress{
+    width:100%;
+    height:10px;
+    background:#e5e7eb;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    background:var(--primary);
+    width:0%;
+    transition:.3s;
+}
+
+/* =========================
+   TABELAS
+========================= */
+
+.table-container{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,
+td{
+    padding:12px;
+    border-bottom:1px solid var(--border);
+    text-align:left;
+    font-size:14px;
+}
+
+th{
+    background:#f9fafb;
+    color:var(--primary);
+}
+
+tr:hover{
+    background:#fafafa;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    z-index:500;
+    padding:20px;
+    overflow-y:auto;
+}
+
+.modal.show{
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+}
+
+.modal-box{
+    width:100%;
+    max-width:700px;
+    background:#fff;
+    border-radius:18px;
+    margin:30px auto;
+    padding:25px;
+    box-shadow:0 20px 70px rgba(0,0,0,.3);
+}
+
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.close{
+    background:#f3f4f6;
+    font-size:20px;
+    width:40px;
+    height:40px;
+    padding:0;
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#111827;
+    color:#fff;
+    padding:14px 18px;
+    border-radius:10px;
+    z-index:9999;
+    display:none;
+    max-width:350px;
+}
+
+.toast.show{
+    display:block;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+    text-align:center;
+    padding:40px 20px;
+    color:var(--muted);
+}
+
+.empty-icon{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:900px){
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .grid-3,
+    .grid-4{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:650px){
+
+    .header-content{
+        padding:12px;
+    }
+
+    .header-title h1{
+        font-size:16px;
+    }
+
+    .header-title small{
+        font-size:10px;
+    }
+
+    .user-badge{
+        display:none;
+    }
+
+    nav{
+        top:69px;
+    }
+
+    .nav-btn{
+        padding:12px 13px;
+        font-size:12px;
+    }
+
+    main{
+        padding:18px 12px 40px;
+    }
+
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .stat-card{
+        padding:15px;
+    }
+
+    .stat-card .number{
+        font-size:23px;
+    }
+
+    .grid,
+    .grid-3,
+    .grid-4{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        padding:16px;
+    }
+
+    .login-box{
+        padding:22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<div id="loginScreen">
+
+    <div class="login-box">
+
+        <div class="logo">MS</div>
+
+        <h1>Censo Eleitoral</h1>
+
+        <p>
+            Pesquisa territorial de intenção de voto<br>
+            Monte Santo e localidades
+        </p>
+
+        <div class="form-group">
+            <label>Usuário</label>
+            <input
+                type="text"
+                id="loginUser"
+                placeholder="Digite seu usuário"
+            >
+        </div>
+
+        <div class="form-group">
+            <label>Senha</label>
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Digite sua senha"
+            >
+        </div>
+
+        <button
+            class="btn-primary full"
+            onclick="login()"
+        >
+            Entrar
+        </button>
+
+        <div class="login-demo">
+            <strong>Acesso inicial:</strong><br>
+            Usuário: <b>admin</b><br>
+            Senha: <b>1234</b>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     APP
+========================= -->
+
+<div id="app">
+
+<header>
+
+    <div class="header-content">
+
+        <div class="header-title">
+
+            <div class="header-logo">
+                MS
+            </div>
+
+            <div>
+                <h1>Censo Eleitoral</h1>
+                <small>Monte Santo e seus povoados</small>
+            </div>
+
+        </div>
+
+        <div class="user-area">
+
+            <span
+                class="user-badge"
+                id="loggedUser"
+            >
+                Administrador
+            </span>
+
+            <button
+                onclick="logout()"
+                style="background:#fff;color:#7b1e1e;"
+            >
+                Sair
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<nav>
+
+    <div class="nav-inner">
+
+        <button
+            class="nav-btn active"
+            onclick="showSection('dashboard',this)"
+        >
+            📊 Dashboard
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showSection('novaCasa',this)"
+        >
+            🏠 Nova Casa
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showSection('casas',this)"
+        >
+            📋 Casas
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showSection('povoados',this)"
+        >
+            🗺️ Povoados
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showSection('resultados',this)"
+        >
+            🗳️ Resultados
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showSection('candidatos',this)"
+        >
+            👤 Candidatos
+        </button>
+
+        <button
+            class="nav-btn"
+            onclick="showSection('config',this)"
+        >
+            ⚙️ Configurações
+        </button>
+
+    </div>
+
+</nav>
+
+
+<main>
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section
+    id="dashboard"
+    class="section active"
+>
+
+    <div class="page-title">
+
+        <h2>Dashboard</h2>
+
+        <p>
+            Visão geral da pesquisa eleitoral.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="stat-card">
+
+            <div class="icon">🏠</div>
+
+            <div
+                class="number"
+                id="totalCasas"
+            >
+                0
+            </div>
+
+            <div class="label">
+                Casas pesquisadas
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon">👥</div>
+
+            <div
+                class="number"
+                id="totalEleitores"
+            >
+                0
+            </div>
+
+            <div class="label">
+                Eleitores pesquisados
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon">🗺️</div>
+
+            <div
+                class="number"
+                id="totalPovoados"
+            >
+                0
+            </div>
+
+            <div class="label">
+                Localidades
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="icon">🗳️</div>
+
+            <div
+                class="number"
+                id="totalPesquisas"
+            >
+                0
+            </div>
+
+            <div class="label">
+                Pesquisas realizadas
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>
+                🗳️ Intenção para Prefeito
+            </h3>
+
+            <div
+                id="dashboardPrefeito"
+                class="result-list"
+            >
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                👤 Intenção para Vereador
+            </h3>
+
+            <div
+                id="dashboardVereador"
+                class="result-list"
+            >
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            🗺️ Resumo por povoado
+        </h3>
+
+        <div
+            class="table-container"
+            id="dashboardPovoados"
+        >
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     NOVA CASA
+========================= -->
+
+<section
+    id="novaCasa"
+    class="section"
+>
+
+    <div class="page-title">
+
+        <h2>Cadastro de nova casa</h2>
+
+        <p>
+            Cadastre uma residência e os eleitores pesquisados.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>🏠 Dados da residência</h3>
+
+        <div class="grid">
+
+            <div class="form-group">
+
+                <label>
+                    Povoado / Localidade *
+                </label>
+
+                <select id="casaPovoado">
+                    <option value="">
+                        Selecione
+                    </option>
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Identificação da casa *
+                </label>
+
+                <input
+                    id="casaNumero"
+                    type="text"
+                    placeholder="Ex.: Casa 01"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Responsável pela residência
+                </label>
+
+                <input
+                    id="casaResponsavel"
+                    type="text"
+                    placeholder="Nome do responsável"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Quantidade de eleitores
+                </label>
+
+                <input
+                    id="casaQtdEleitores"
+                    type="number"
+                    min="1"
+                    value="1"
+                    onchange="ajustarEleitores()"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div style="
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:10px;
+            margin-bottom:18px;
+        ">
+
+            <h3 style="margin:0;">
+                👥 Eleitores da residência
+            </h3>
+
+            <button
+                class="btn-secondary"
+                onclick="adicionarEleitor()"
+            >
+                + Adicionar eleitor
+            </button>
+
+        </div>
+
+
+        <div
+            id="eleitoresContainer"
+        >
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>📝 Observações</h3>
+
+        <textarea
+            id="casaObservacoes"
+            placeholder="Observações gerais da pesquisa..."
+        ></textarea>
+
+    </div>
+
+
+    <div style="
+        display:flex;
+        gap:10px;
+        justify-content:flex-end;
+        flex-wrap:wrap;
+    ">
+
+        <button
+            class="btn-secondary"
+            onclick="limparFormularioCasa()"
+        >
+            Limpar
+        </button>
+
+        <button
+            class="btn-success"
+            onclick="salvarCasa()"
+        >
+            💾 Salvar pesquisa
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CASAS
+========================= -->
+
+<section
+    id="casas"
+    class="section"
+>
+
+    <div class="page-title">
+
+        <h2>Casas pesquisadas</h2>
+
+        <p>
+            Consulte todas as residências cadastradas.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="grid">
+
+            <div class="form-group">
+
+                <label>
+                    Buscar
+                </label>
+
+                <input
+                    id="buscaCasa"
+                    type="text"
+                    placeholder="Nome, casa ou povoado..."
+                    oninput="renderCasas()"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Filtrar por povoado
+                </label>
+
+                <select
+                    id="filtroPovoado"
+                    onchange="renderCasas()"
+                >
+                    <option value="">
+                        Todos
+                    </option>
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <div
+            id="listaCasas"
+        >
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     POVOADOS
+========================= -->
+
+<section
+    id="povoados"
+    class="section"
+>
+
+    <div class="page-title">
+
+        <h2>Povoados e localidades</h2>
+
+        <p>
+            Cadastre e acompanhe as localidades pesquisadas.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>➕ Novo povoado</h3>
+
+        <div class="grid">
+
+            <div class="form-group">
+
+                <label>
+                    Nome da localidade
+                </label>
+
+                <input
+                    id="novoPovoado"
+                    type="text"
+                    placeholder="Ex.: Pedra Vermelha"
+                >
+
+            </div>
+
+            <div style="
+                display:flex;
+                align-items:end;
+            ">
+
+                <button
+                    class="btn-primary"
+                    onclick="adicionarPovoado()"
+                >
+                    Adicionar povoado
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            🗺️ Localidades cadastradas
+        </h3>
+
+        <div
+            id="listaPovoados"
+        >
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RESULTADOS
+========================= -->
+
+<section
+    id="resultados"
+    class="section"
+>
+
+    <div class="page-title">
+
+        <h2>Resultados da pesquisa</h2>
+
+        <p>
+            Resultado agregado por localidade e geral.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="grid">
+
+            <div class="form-group">
+
+                <label>
+                    Localidade
+                </label>
+
+                <select
+                    id="resultadoPovoado"
+                    onchange="renderResultados()"
+                >
+                    <option value="">
+                        Todas as localidades
+                    </option>
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>
+                🗳️ Prefeito
+            </h3>
+
+            <div
+                id="resultadoPrefeito"
+                class="result-list"
+            >
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                👤 Vereador
+            </h3>
+
+            <div
+                id="resultadoVereador"
+                class="result-list"
+            >
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            🏠 Casas pesquisadas na localidade
+        </h3>
+
+        <div
+            id="resultadoCasas"
+        >
+        </div>
+
+    </div>
+
+
+    <div style="
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+    ">
+
+        <button
+            class="btn-info"
+            onclick="exportarCSV()"
+        >
+            📥 Exportar CSV
+        </button>
+
+        <button
+            class="btn-success"
+            onclick="window.print()"
+        >
+            🖨️ Imprimir relatório
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CANDIDATOS
+========================= -->
+
+<section
+    id="candidatos"
+    class="section"
+>
+
+    <div class="page-title">
+
+        <h2>Candidatos</h2>
+
+        <p>
+            Cadastre os nomes utilizados na pesquisa.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>➕ Cadastrar candidato</h3>
+
+        <div class="grid">
+
+            <div class="form-group">
+
+                <label>
+                    Nome
+                </label>
+
+                <input
+                    id="candidatoNome"
+                    type="text"
+                    placeholder="Nome do candidato"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Cargo
+                </label>
+
+                <select id="candidatoCargo">
+
+                    <option value="prefeito">
+                        Prefeito
+                    </option>
+
+                    <option value="vereador">
+                        Vereador
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="btn-primary"
+            onclick="adicionarCandidato()"
+        >
+            Cadastrar candidato
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            🗳️ Candidatos cadastrados
+        </h3>
+
+        <div
+            id="listaCandidatos"
+        >
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONFIGURAÇÕES
+========================= -->
+
+<section
+    id="config"
+    class="section"
+>
+
+    <div class="page-title">
+
+        <h2>Configurações</h2>
+
+        <p>
+            Configurações do sistema.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            🔐 Acesso
+        </h3>
+
+        <div class="grid">
+
+            <div class="form-group">
+
+                <label>
+                    Novo usuário
+                </label>
+
+                <input
+                    id="novoUsuario"
+                    type="text"
+                    placeholder="Usuário"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Nova senha
+                </label>
+
+                <input
+                    id="novaSenha"
+                    type="password"
+                    placeholder="Senha"
+                >
+
+            </div>
+
+        </div>
+
+        <button
+            class="btn-primary"
+            onclick="alterarLogin()"
+        >
+            Salvar acesso
+        </button>
+
+    </div>
+
+
+    <div class="card">
+
+        <h3>
+            ⚠️ Dados
+        </h3>
+
+        <p style="
+            color:var(--muted);
+            margin-bottom:15px;
+        ">
+            As informações desta versão ficam armazenadas
+            localmente neste navegador.
+        </p>
+
+        <button
+            class="btn-danger"
+            onclick="apagarTodosDados()"
+        >
+            Apagar todos os dados
+        </button>
+
+    </div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- =========================
+     MODAL DETALHES
+========================= -->
+
+<div
+    id="modalDetalhes"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2>
+                Detalhes da residência
+            </h2>
+
+            <button
+                class="close"
+                onclick="fecharModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div
+            id="detalhesConteudo"
+        >
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast"
+>
+</div>
+
+
+<script>
+
+/* ==========================================================
+   BANCO LOCAL
+========================================================== */
+
+const DB_KEY = "censo_eleitoral_monte_santo_v1";
+
+let db = {
+    povoados: [],
+    candidatos: [],
+    casas: [],
+    usuarios: [
+        {
+            usuario:"admin",
+            senha:"1234",
+            perfil:"Administrador"
+        }
+    ]
+};
+
+
+/* ==========================================================
+   CARREGAR BANCO
+========================================================== */
+
+function carregarDB(){
+
+    const salvo = localStorage.getItem(DB_KEY);
+
+    if(salvo){
+
+        try{
+
+            const dados = JSON.parse(salvo);
+
+            db = {
+                ...db,
+                ...dados
+            };
+
+        }catch(e){
+
+            console.error(e);
+
+        }
+
+    }
+
+    salvarDB();
+
+}
+
+
+/* ==========================================================
+   SALVAR BANCO
+========================================================== */
+
+function salvarDB(){
+
+    localStorage.setItem(
+        DB_KEY,
+        JSON.stringify(db)
+    );
+
+}
+
+
+/* ==========================================================
+   TOAST
+========================================================== */
+
+function toast(msg){
+
+    const el = document.getElementById("toast");
+
+    el.textContent = msg;
+
+    el.classList.add("show");
+
+    setTimeout(()=>{
+        el.classList.remove("show");
+    },3000);
+
+}
+
+
+/* ==========================================================
+   LOGIN
+========================================================== */
+
+function login(){
+
+    const usuario =
+        document.getElementById("loginUser").value.trim();
+
+    const senha =
+        document.getElementById("loginPassword").value;
+
+    const encontrado = db.usuarios.find(
+        u =>
+            u.usuario === usuario &&
+            u.senha === senha
+    );
+
+    if(!encontrado){
+
+        toast("Usuário ou senha incorretos.");
+
+        return;
+    }
+
+    sessionStorage.setItem(
+        "usuarioLogado",
+        encontrado.usuario
+    );
+
+    sessionStorage.setItem(
+        "perfilLogado",
+        encontrado.perfil
+    );
+
+    document.getElementById("loginScreen").style.display="none";
+
+    document.getElementById("app").style.display="block";
+
+    document.getElementById("loggedUser").textContent =
+        encontrado.usuario;
+
+    inicializar();
+
+}
+
+
+function logout(){
+
+    sessionStorage.clear();
+
+    document.getElementById("app").style.display="none";
+
+    document.getElementById("loginScreen").style.display="flex";
+
+}
+
+
+/* ==========================================================
+   NAVEGAÇÃO
+========================================================== */
+
+function showSection(id,button){
+
+    document
+        .querySelectorAll(".section")
+        .forEach(s =>
+            s.classList.remove("active")
+        );
+
+    document
+        .querySelectorAll(".nav-btn")
+        .forEach(b =>
+            b.classList.remove("active")
+        );
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    if(button){
+        button.classList.add("active");
+    }
+
+    if(id==="dashboard"){
+        renderDashboard();
+    }
+
+    if(id==="casas"){
+        renderCasas();
+    }
+
+    if(id==="povoados"){
+        renderPovoados();
+    }
+
+    if(id==="resultados"){
+        renderResultados();
+    }
+
+    if(id==="candidatos"){
+        renderCandidatos();
+    }
+
+}
+
+
+/* ==========================================================
+   POVOADOS
+========================================================== */
+
+function adicionarPovoado(){
+
+    const input =
+        document.getElementById("novoPovoado");
+
+    const nome =
+        input.value.trim();
+
+    if(!nome){
+
+        toast("Digite o nome do povoado.");
+
+        return;
+    }
+
+    const existe =
+        db.povoados.some(
+            p =>
+                p.toLowerCase() ===
+                nome.toLowerCase()
+        );
+
+    if(existe){
+
+        toast("Esse povoado já está cadastrado.");
+
+        return;
+    }
+
+    db.povoados.push(nome);
+
+    salvarDB();
+
+    input.value="";
+
+    atualizarSelects();
+
+    renderPovoados();
+
+    toast("Povoado cadastrado.");
+
+}
+
+
+/* ==========================================================
+   RENDER POVOADOS
+========================================================== */
+
+function renderPovoados(){
+
+    const container =
+        document.getElementById("listaPovoados");
+
+    if(!db.povoados.length){
+
+        container.innerHTML = `
+            <div class="empty">
+                <div class="empty-icon">🗺️</div>
+                Nenhum povoado cadastrado.
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML =
+        db.povoados.map((p,index)=>{
+
+            const casas =
+                db.casas.filter(
+                    c => c.povoado === p
+                );
+
+            const eleitores =
+                casas.reduce(
+                    (total,c) =>
+                        total + c.eleitores.length,
+                    0
+                );
+
+            return `
+
+            <div class="result-row">
+
+                <div class="result-top">
+
+                    <strong>
+                        🗺️ ${escapeHTML(p)}
+                    </strong>
+
+                    <span>
+                        ${casas.length} casas
+                    </span>
+
+                </div>
+
+                <div style="
+                    color:#6b7280;
+                    font-size:13px;
+                ">
+                    ${eleitores} eleitores pesquisados
+                </div>
+
+                <div style="
+                    margin-top:10px;
+                ">
+
+                    <button
+                        class="btn-danger"
+                        style="padding:7px 10px;font-size:12px;"
+                        onclick="excluirPovoado(${index})"
+                    >
+                        Excluir
+                    </button>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+function excluirPovoado(index){
+
+    const nome =
+        db.povoados[index];
+
+    const possuiCasas =
+        db.casas.some(
+            c => c.povoado === nome
+        );
+
+    if(possuiCasas){
+
+        toast(
+            "Não é possível excluir um povoado que possui casas cadastradas."
+        );
+
+        return;
+    }
+
+    if(!confirm(
+        `Excluir o povoado "${nome}"?`
+    )) return;
+
+    db.povoados.splice(index,1);
+
+    salvarDB();
+
+    atualizarSelects();
+
+    renderPovoados();
+
+}
+
+
+/* ==========================================================
+   CANDIDATOS
+========================================================== */
+
+function adicionarCandidato(){
+
+    const nome =
+        document
+        .getElementById("candidatoNome")
+        .value
+        .trim();
+
+    const cargo =
+        document
+        .getElementById("candidatoCargo")
+        .value;
+
+    if(!nome){
+
+        toast("Digite o nome do candidato.");
+
+        return;
+    }
+
+    db.candidatos.push({
+        id: gerarID(),
+        nome,
+        cargo
+    });
+
+    salvarDB();
+
+    document.getElementById("candidatoNome").value="";
+
+    renderCandidatos();
+
+    atualizarSelects();
+
+    toast("Candidato cadastrado.");
+
+}
+
+
+function renderCandidatos(){
+
+    const container =
+        document.getElementById("listaCandidatos");
+
+    if(!db.candidatos.length){
+
+        container.innerHTML = `
+            <div class="empty">
+                Nenhum candidato cadastrado.
+            </div>
+        `;
+
+        return;
+    }
+
+    container.innerHTML =
+        db.candidatos.map((c,index)=>{
+
+            return `
+
+            <div class="result-row">
+
+                <div class="result-top">
+
+                    <strong>
+                        ${escapeHTML(c.nome)}
+                    </strong>
+
+                    <span>
+                        ${
+                            c.cargo === "prefeito"
+                            ? "Prefeito"
+                            : "Vereador"
+                        }
+                    </span>
+
+                </div>
+
+                <button
+                    class="btn-danger"
+                    style="padding:7px 10px;font-size:12px;"
+                    onclick="excluirCandidato(${index})"
+                >
+                    Excluir
+                </button>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+function excluirCandidato(index){
+
+    const candidato =
+        db.candidatos[index];
+
+    if(!confirm(
+        `Excluir ${candidato.nome}?`
+    )) return;
+
+    db.candidatos.splice(index,1);
+
+    salvarDB();
+
+    renderCandidatos();
+
+    toast("Candidato excluído.");
+
+}
+
+
+/* ==========================================================
+   ELEITORES
+========================================================== */
+
+let contadorEleitor = 0;
+
+
+function criarEleitorHTML(index){
+
+    const prefeitos =
+        db.candidatos.filter(
+            c => c.cargo === "prefeito"
+        );
+
+    const vereadores =
+        db.candidatos.filter(
+            c => c.cargo === "vereador"
+        );
+
+    const opPrefeito = prefeitos.map(c=>`
+
+        <option value="${escapeAttr(c.id)}">
+            ${escapeHTML(c.nome)}
+        </option>
+
+    `).join("");
+
+    const opVereador = vereadores.map(c=>`
+
+        <option value="${escapeAttr(c.id)}">
+            ${escapeHTML(c.nome)}
+        </option>
+
+    `).join("");
+
+
+    return `
+
+    <div
+        class="eleitor"
+        id="eleitor_${index}"
+    >
+
+        <div class="eleitor-header">
+
+            <strong>
+                Eleitor ${index}
+            </strong>
+
+            <div class="eleitor-actions">
+
+                <button
+                    class="btn-danger"
+                    onclick="removerEleitor(${index})"
+                >
+                    Remover
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="grid">
+
+            <div class="form-group">
+
+                <label>
+                    Identificação opcional
+                </label>
+
+                <input
+                    type="text"
+                    id="eleitorNome_${index}"
+                    placeholder="Pode deixar em branco"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Sexo
+                </label>
+
+                <select id="eleitorSexo_${index}">
+
+                    <option value="">
+                        Não informado
+                    </option>
+
+                    <option value="Feminino">
+                        Feminino
+                    </option>
+
+                    <option value="Masculino">
+                        Masculino
+                    </option>
+
+                    <option value="Outro">
+                        Outro
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Intenção para Prefeito
+                </label>
+
+                <select id="eleitorPrefeito_${index}">
+
+                    <option value="">
+                        Não informou
+                    </option>
+
+                    <option value="INDECISO">
+                        Indeciso
+                    </option>
+
+                    ${opPrefeito}
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Intenção para Vereador
+                </label>
+
+                <select id="eleitorVereador_${index}">
+
+                    <option value="">
+                        Não informou
+                    </option>
+
+                    <option value="INDECISO">
+                        Indeciso
+                    </option>
+
+                    ${opVereador}
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+
+function adicionarEleitor(){
+
+    contadorEleitor++;
+
+    const container =
+        document.getElementById(
+            "eleitoresContainer"
+        );
+
+    const div =
+        document.createElement("div");
+
+    div.innerHTML =
+        criarEleitorHTML(contadorEleitor);
+
+    container.appendChild(
+        div.firstElementChild
+    );
+
+}
+
+
+function removerEleitor(index){
+
+    const el =
+        document.getElementById(
+            `eleitor_${index}`
+        );
+
+    if(el){
+
+        el.remove();
+
+    }
+
+}
+
+
+function ajustarEleitores(){
+
+    const qtd =
+        parseInt(
+            document
+            .getElementById("casaQtdEleitores")
+            .value
+        ) || 1;
+
+    const container =
+        document.getElementById(
+            "eleitoresContainer"
+        );
+
+    const atuais =
+        container.querySelectorAll(
+            ".eleitor"
+        ).length;
+
+    if(qtd > atuais){
+
+        for(
+            let i=atuais;
+            i<qtd;
+            i++
+        ){
+
+            adicionarEleitor();
+
+        }
+
+    }
+
+}
+
+
+/* ==========================================================
+   SALVAR CASA
+========================================================== */
+
+function salvarCasa(){
+
+    const povoado =
+        document
+        .getElementById("casaPovoado")
+        .value;
+
+    const numero =
+        document
+        .getElementById("casaNumero")
+        .value
+        .trim();
+
+    const responsavel =
+        document
+        .getElementById("casaResponsavel")
+        .value
+        .trim();
+
+    const observacoes =
+        document
+        .getElementById("casaObservacoes")
+        .value
+        .trim();
+
+
+    if(!povoado){
+
+        toast("Selecione o povoado.");
+
+        return;
+    }
+
+    if(!numero){
+
+        toast("Informe a identificação da casa.");
+
+        return;
+    }
+
+
+    const elementos =
+        document.querySelectorAll(
+            "#eleitoresContainer .eleitor"
+        );
+
+
+    if(!elementos.length){
+
+        toast("Cadastre pelo menos um eleitor.");
+
+        return;
+    }
+
+
+    const eleitores = [];
+
+
+    elementos.forEach((el)=>{
+
+        const id =
+            el.id.replace("eleitor_","");
+
+        const nome =
+            document
+            .getElementById(
+                `eleitorNome_${id}`
+            )?.value
+            .trim() || "";
+
+        const sexo =
+            document
+            .getElementById(
+                `eleitorSexo_${id}`
+            )?.value || "";
+
+        const prefeito =
+            document
+            .getElementById(
+                `eleitorPrefeito_${id}`
+            )?.value || "";
+
+        const vereador =
+            document
+            .getElementById(
+                `eleitorVereador_${id}`
+            )?.value || "";
+
+
+        eleitores.push({
+
+            id:gerarID(),
+
+            /*
+             * O nome é opcional para preservar
+             * a privacidade da preferência.
+             */
+            nome,
+
+            sexo,
+
+            prefeito,
+
+            vereador
+
+        });
+
+    });
+
+
+    const registro = {
+
+        id:gerarID(),
+
+        povoado,
+
+        numero,
+
+        responsavel,
+
+        observacoes,
+
+        eleitores,
+
+        criadoEm:new Date().toISOString(),
+
+        pesquisador:
+            sessionStorage.getItem(
+                "usuarioLogado"
+            ) || "admin"
+
+    };
+
+
+    db.casas.push(registro);
+
+    salvarDB();
+
+    toast("Pesquisa da casa salva com sucesso.");
+
+    limparFormularioCasa();
+
+    atualizarTudo();
+
+}
+
+
+/* ==========================================================
+   LIMPAR FORMULÁRIO
+========================================================== */
+
+function limparFormularioCasa(){
+
+    document.getElementById("casaNumero").value="";
+
+    document.getElementById("casaResponsavel").value="";
+
+    document.getElementById("casaObservacoes").value="";
+
+    document.getElementById("casaQtdEleitores").value=1;
+
+    document.getElementById("eleitoresContainer").innerHTML="";
+
+    contadorEleitor=0;
+
+    adicionarEleitor();
+
+}
+
+
+/* ==========================================================
+   CASAS
+========================================================== */
+
+function renderCasas(){
+
+    const container =
+        document.getElementById("listaCasas");
+
+    const busca =
+        document
+        .getElementById("buscaCasa")
+        ?.value
+        .toLowerCase()
+        .trim() || "";
+
+    const filtro =
+        document
+        .getElementById("filtroPovoado")
+        ?.value || "";
+
+
+    let casas =
+        [...db.casas].reverse();
+
+
+    if(busca){
+
+        casas =
+            casas.filter(c=>{
+
+                const texto =
+                    `${c.numero}
+                    ${c.responsavel}
+                    ${c.povoado}`.toLowerCase();
+
+                return texto.includes(busca);
+
+            });
+
+    }
+
+
+    if(filtro){
+
+        casas =
+            casas.filter(
+                c => c.povoado === filtro
+            );
+
+    }
+
+
+    if(!casas.length){
+
+        container.innerHTML=`
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    🏠
+                </div>
+
+                Nenhuma casa encontrada.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = `
+
+        <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Povoado</th>
+
+                    <th>Casa</th>
+
+                    <th>Responsável</th>
+
+                    <th>Eleitores</th>
+
+                    <th>Data</th>
+
+                    <th>Ações</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${casas.map(c=>`
+
+                    <tr>
+
+                        <td>
+                            ${escapeHTML(c.povoado)}
+                        </td>
+
+                        <td>
+                            <strong>
+                                ${escapeHTML(c.numero)}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${escapeHTML(
+                                c.responsavel || "-"
+                            )}
+                        </td>
+
+                        <td>
+                            ${c.eleitores.length}
+                        </td>
+
+                        <td>
+                            ${formatarData(c.criadoEm)}
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn-info"
+                                style="padding:7px 9px;font-size:12px;"
+                                onclick="verCasa('${c.id}')"
+                            >
+                                Ver
+                            </button>
+
+                            <button
+                                class="btn-danger"
+                                style="padding:7px 9px;font-size:12px;"
+                                onclick="excluirCasa('${c.id}')"
+                            >
+                                Excluir
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                `).join("")}
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==========================================================
+   VER CASA
+========================================================== */
+
+function verCasa(id){
+
+    const casa =
+        db.casas.find(
+            c => c.id === id
+        );
+
+    if(!casa) return;
+
+
+    const prefeitoResumo =
+        contarVotos(casa,"prefeito");
+
+    const vereadorResumo =
+        contarVotos(casa,"vereador");
+
+
+    document.getElementById(
+        "detalhesConteudo"
+    ).innerHTML = `
+
+        <div class="card" style="box-shadow:none;border:1px solid var(--border);">
+
+            <p>
+                <strong>Povoado:</strong>
+                ${escapeHTML(casa.povoado)}
+            </p>
+
+            <p style="margin-top:8px;">
+                <strong>Casa:</strong>
+                ${escapeHTML(casa.numero)}
+            </p>
+
+            <p style="margin-top:8px;">
+                <strong>Responsável:</strong>
+                ${escapeHTML(casa.responsavel || "-")}
+            </p>
+
+            <p style="margin-top:8px;">
+                <strong>Eleitores:</strong>
+                ${casa.eleitores.length}
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                🗳️ Resultado para Prefeito
+            </h3>
+
+            ${renderResumoSimples(prefeitoResumo)}
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                👤 Resultado para Vereador
+            </h3>
+
+            ${renderResumoSimples(vereadorResumo)}
+
+        </div>
+
+
+        ${
+            casa.observacoes
+            ?
+            `
+            <div class="card">
+
+                <h3>
+                    📝 Observações
+                </h3>
+
+                <p>
+                    ${escapeHTML(casa.observacoes)}
+                </p>
+
+            </div>
+            `
+            :
+            ""
+        }
+
+    `;
+
+
+    document
+        .getElementById("modalDetalhes")
+        .classList.add("show");
+
+}
+
+
+function fecharModal(){
+
+    document
+        .getElementById("modalDetalhes")
+        .classList.remove("show");
+
+}
+
+
+/* ==========================================================
+   EXCLUIR CASA
+========================================================== */
+
+function excluirCasa(id){
+
+    const casa =
+        db.casas.find(
+            c => c.id === id
+        );
+
+    if(!casa) return;
+
+
+    if(!confirm(
+        `Excluir a pesquisa da ${casa.numero}?`
+    )) return;
+
+
+    db.casas =
+        db.casas.filter(
+            c => c.id !== id
+        );
+
+
+    salvarDB();
+
+    renderCasas();
+
+    atualizarTudo();
+
+    toast("Pesquisa excluída.");
+
+}
+
+
+/* ==========================================================
+   CONTAGEM
+========================================================== */
+
+function contarVotos(casasOuCasa,tipo){
+
+    const casas =
+        Array.isArray(casasOuCasa)
+        ? casasOuCasa
+        : [casasOuCasa];
+
+
+    const contagem = {};
+
+
+    casas.forEach(casa=>{
+
+        casa.eleitores.forEach(eleitor=>{
+
+            const voto =
+                eleitor[tipo];
+
+            if(!voto){
+
+                const chave =
+                    "NAO_INFORMOU";
+
+                contagem[chave] =
+                    (contagem[chave] || 0) + 1;
+
+                return;
+            }
+
+
+            contagem[voto] =
+                (contagem[voto] || 0) + 1;
+
+        });
+
+    });
+
+
+    return contagem;
+
+}
+
+
+function obterNomeVoto(id){
+
+    if(id==="INDECISO"){
+        return "Indeciso";
+    }
+
+    if(id==="NAO_INFORMOU"){
+        return "Não informou";
+    }
+
+    const candidato =
+        db.candidatos.find(
+            c => c.id === id
+        );
+
+    return candidato
+        ? candidato.nome
+        : "Candidato removido";
+
+}
+
+
+/* ==========================================================
+   RESULTADO SIMPLES
+========================================================== */
+
+function renderResumoSimples(contagem){
+
+    const total =
+        Object.values(contagem)
+        .reduce(
+            (a,b)=>a+b,
+            0
+        );
+
+
+    const entries =
+        Object.entries(contagem)
+        .sort(
+            (a,b)=>b[1]-a[1]
+        );
+
+
+    if(!entries.length){
+
+        return `
+            <div class="empty">
+                Nenhum voto registrado.
+            </div>
+        `;
+
+    }
+
+
+    return `
+
+        <div class="result-list">
+
+            ${entries.map(([id,qtd])=>{
+
+                const percentual =
+                    total
+                    ?
+                    (qtd / total * 100)
+                    :
+                    0;
+
+                return `
+
+                    <div class="result-row">
+
+                        <div class="result-top">
+
+                            <strong>
+                                ${escapeHTML(
+                                    obterNomeVoto(id)
+                                )}
+                            </strong>
+
+                            <strong>
+                                ${qtd}
+                                (${percentual.toFixed(1)}%)
+                            </strong>
+
+                        </div>
+
+                        <div class="progress">
+
+                            <div
+                                class="progress-bar"
+                                style="width:${percentual}%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }).join("")}
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==========================================================
+   RESULTADOS GERAIS
+========================================================== */
+
+function renderResultados(){
+
+    const povoado =
+        document
+        .getElementById("resultadoPovoado")
+        ?.value || "";
+
+
+    let casas =
+        db.casas;
+
+
+    if(povoado){
+
+        casas =
+            casas.filter(
+                c => c.povoado === povoado
+            );
+
+    }
+
+
+    const prefeito =
+        contarVotos(
+            casas,
+            "prefeito"
+        );
+
+    const vereador =
+        contarVotos(
+            casas,
+            "vereador"
+        );
+
+
+    document.getElementById(
+        "resultadoPrefeito"
+    ).innerHTML =
+        renderResumoSimples(prefeito);
+
+
+    document.getElementById(
+        "resultadoVereador"
+    ).innerHTML =
+        renderResumoSimples(vereador);
+
+
+    document.getElementById(
+        "resultadoCasas"
+    ).innerHTML = `
+
+        <div class="grid-3">
+
+            <div class="stat-card">
+
+                <div class="number">
+                    ${casas.length}
+                </div>
+
+                <div class="label">
+                    Casas pesquisadas
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="number">
+                    ${casas.reduce(
+                        (t,c)=>
+                            t+c.eleitores.length,
+                        0
+                    )}
+                </div>
+
+                <div class="label">
+                    Eleitores
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="number">
+                    ${povoado || "Todos"}
+                </div>
+
+                <div class="label">
+                    Localidade
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==========================================================
+   DASHBOARD
+========================================================== */
+
+function renderDashboard(){
+
+    document.getElementById(
+        "totalCasas"
+    ).textContent =
+        db.casas.length;
+
+
+    const totalEleitores =
+        db.casas.reduce(
+            (total,casa)=>
+                total+casa.eleitores.length,
+            0
+        );
+
+
+    document.getElementById(
+        "totalEleitores"
+    ).textContent =
+        totalEleitores;
+
+
+    document.getElementById(
+        "totalPovoados"
+    ).textContent =
+        db.povoados.length;
+
+
+    document.getElementById(
+        "totalPesquisas"
+    ).textContent =
+        totalEleitores;
+
+
+    const prefeito =
+        contarVotos(
+            db.casas,
+            "prefeito"
+        );
+
+
+    const vereador =
+        contarVotos(
+            db.casas,
+            "vereador"
+        );
+
+
+    document.getElementById(
+        "dashboardPrefeito"
+    ).innerHTML =
+        renderResumoSimples(prefeito);
+
+
+    document.getElementById(
+        "dashboardVereador"
+    ).innerHTML =
+        renderResumoSimples(vereador);
+
+
+    renderDashboardPovoados();
+
+}
+
+
+function renderDashboardPovoados(){
+
+    const container =
+        document.getElementById(
+            "dashboardPovoados"
+        );
+
+
+    if(!db.povoados.length){
+
+        container.innerHTML = `
+            <div class="empty">
+                Nenhum povoado cadastrado.
+            </div>
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = `
+
+        <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Povoado</th>
+
+                    <th>Casas</th>
+
+                    <th>Eleitores</th>
+
+                    <th>Pesquisadores</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                ${db.povoados.map(p=>{
+
+                    const casas =
+                        db.casas.filter(
+                            c=>c.povoado===p
+                        );
+
+                    const eleitores =
+                        casas.reduce(
+                            (t,c)=>
+                                t+c.eleitores.length,
+                            0
+                        );
+
+                    const pesquisadores =
+                        [
+                            ...new Set(
+                                casas.map(
+                                    c=>c.pesquisador
+                                )
+                            )
+                        ].length;
+
+
+                    return `
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                ${escapeHTML(p)}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${casas.length}
+                        </td>
+
+                        <td>
+                            ${eleitores}
+                        </td>
+
+                        <td>
+                            ${pesquisadores}
+                        </td>
+
+                    </tr>
+
+                    `;
+
+                }).join("")}
+
+            </tbody>
+
+        </table>
+
+        </div>
+
+    `;
+
+}
+
+
+/* ==========================================================
+   SELECTS
+========================================================== */
+
+function atualizarSelects(){
+
+    const selects = [
+
+        "casaPovoado",
+        "filtroPovoado",
+        "resultadoPovoado"
+
+    ];
+
+
+    selects.forEach(id=>{
+
+        const select =
+            document.getElementById(id);
+
+        if(!select) return;
+
+
+        const valorAtual =
+            select.value;
+
+
+        if(id==="filtroPovoado"){
+
+            select.innerHTML =
+                `<option value="">
+                    Todos
+                </option>`;
+
+        }
+
+        else if(id==="resultadoPovoado"){
+
+            select.innerHTML =
+                `<option value="">
+                    Todas as localidades
+                </option>`;
+
+        }
+
+        else{
+
+            select.innerHTML =
+                `<option value="">
+                    Selecione
+                </option>`;
+
+        }
+
+
+        db.povoados.forEach(p=>{
+
+            const option =
+                document.createElement("option");
+
+            option.value=p;
+
+            option.textContent=p;
+
+            select.appendChild(option);
+
+        });
+
+
+        if(
+            [...select.options]
+            .some(
+                o => o.value === valorAtual
+            )
+        ){
+
+            select.value =
+                valorAtual;
+
+        }
+
+    });
+
+}
+
+
+/* ==========================================================
+   EXPORTAR CSV
+========================================================== */
+
+function exportarCSV(){
+
+    if(!db.casas.length){
+
+        toast("Não existem dados para exportar.");
+
+        return;
+    }
+
+
+    let csv =
+        "Povoado;Casa;Responsavel;Eleitor;Prefeito;Vereador;Pesquisador;Data\n";
+
+
+    db.casas.forEach(casa=>{
+
+        casa.eleitores.forEach((eleitor,index)=>{
+
+            csv += [
+
+                casa.povoado,
+
+                casa.numero,
+
+                eleitor.nome || casa.responsavel || "",
+
+                index+1,
+
+                obterNomeVoto(
+                    eleitor.prefeito
+                ),
+
+                obterNomeVoto(
+                    eleitor.vereador
+                ),
+
+                casa.pesquisador,
+
+                formatarData(
+                    casa.criadoEm
+                )
+
+            ]
+            .map(
+                v =>
+                    `"${String(v)
+                    .replace(/"/g,'""')}"`
+            )
+            .join(";");
+
+            csv += "\n";
+
+        });
+
+    });
+
+
+    const blob =
+        new Blob(
+            ["\ufeff"+csv],
+            {
+                type:"text/csv;charset=utf-8;"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const a =
+        document.createElement("a");
+
+    a.href=url;
+
+    a.download =
+        "censo-eleitoral-monte-santo.csv";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+/* ==========================================================
+   LOGIN
+========================================================== */
+
+function alterarLogin(){
+
+    const usuario =
+        document
+        .getElementById("novoUsuario")
+        .value
+        .trim();
+
+    const senha =
+        document
+        .getElementById("novaSenha")
+        .value;
+
+
+    if(!usuario || !senha){
+
+        toast("Preencha usuário e senha.");
+
+        return;
+    }
+
+
+    const atual =
+        db.usuarios.find(
+            u => u.perfil === "Administrador"
+        );
+
+
+    if(atual){
+
+        atual.usuario=usuario;
+
+        atual.senha=senha;
+
+    }
+
+
+    salvarDB();
+
+    toast("Dados de acesso alterados.");
+
+}
+
+
+/* ==========================================================
+   APAGAR DADOS
+========================================================== */
+
+function apagarTodosDados(){
+
+    const confirmar =
+        confirm(
+            "ATENÇÃO!\n\nTodos os povoados, casas, pesquisas e candidatos serão apagados.\n\nDeseja continuar?"
+        );
+
+
+    if(!confirmar) return;
+
+
+    localStorage.removeItem(DB_KEY);
+
+    location.reload();
+
+}
+
+
+/* ==========================================================
+   UTILIDADES
+========================================================== */
+
+function gerarID(){
+
+    return (
+        Date.now().toString(36) +
+        Math.random()
+        .toString(36)
+        .substring(2,8)
+    );
+
+}
+
+
+function formatarData(data){
+
+    if(!data) return "-";
+
+    const d =
+        new Date(data);
+
+    return d.toLocaleString(
+        "pt-BR"
+    );
+
+}
+
+
+function escapeHTML(valor){
+
+    return String(valor ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function escapeAttr(valor){
+
+    return escapeHTML(valor);
+
+}
+
+
+/* ==========================================================
+   ATUALIZAR TUDO
+========================================================== */
+
+function atualizarTudo(){
+
+    atualizarSelects();
+
+    renderDashboard();
+
+    renderCasas();
+
+    renderPovoados();
+
+    renderCandidatos();
+
+    renderResultados();
+
+}
+
+
+/* ==========================================================
+   INICIALIZAÇÃO
+========================================================== */
+
+function inicializar(){
+
+    carregarDB();
+
+    atualizarSelects();
+
+    renderDashboard();
+
+    renderCasas();
+
+    renderPovoados();
+
+    renderCandidatos();
+
+    renderResultados();
+
+    limparFormularioCasa();
+
+}
+
+
+/* ==========================================================
+   INÍCIO
+========================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    ()=>{
+
+        carregarDB();
+
+        const logado =
+            sessionStorage.getItem(
+                "usuarioLogado"
+            );
+
+        if(logado){
+
+            document
+                .getElementById("loginScreen")
+                .style.display="none";
+
+            document
+                .getElementById("app")
+                .style.display="block";
+
+            document
+                .getElementById("loggedUser")
+                .textContent=logado;
+
+            inicializar();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
